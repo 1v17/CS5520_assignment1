@@ -6,11 +6,11 @@ import { useState } from 'react';
 import GradientBackground from '../components/GradientBackground'
 import colors from '../components/Colors'
 import Card from '../components/Card'
+import InputBox from '../components/InputBox';
 
 const StartScreen = () => {
 
-  const [text, setText] = React.useState('');
-  const [showWarning, setShowWarning] = React.useState(false);
+  
   const namePattern = /^[_-a-zA-Z ]+$/;
 
   return (
@@ -19,19 +19,11 @@ const StartScreen = () => {
         <Card>
 
           <Text style={styles.label} >Name</Text>
-          <TextInput style={styles.input}
-            placeholder="Your name"
-            keyboardType='default'
-            value={text}
-            autoFocus={true}
-            onChangeText={function (changedText) {
-              setText(changedText);
-            }}
-            onBlur={() => {setShowWarning(false)}}
-            onFocus={() => {setShowWarning(true)}}
-           />
-           {!namePattern.test(text) && <Text style={styles.invalid_warning}>
-              Please enter a valid name</Text>}
+          <InputBox 
+            placeholder="Enter your name" 
+            keyboardType="default" 
+            warningText="Please enter a valid name" 
+            validationPattern={namePattern} />
           <Text style={styles.label} >Email Address</Text>
           <Text style={styles.label} >Phone number</Text>
           <Checkbox />
