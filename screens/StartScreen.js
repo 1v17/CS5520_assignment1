@@ -10,8 +10,8 @@ import InputBox from '../components/InputBox';
 
 const StartScreen = () => {
 
-  
-  const namePattern = /^[_-a-zA-Z ]+$/;
+  const namePattern = /[_-a-zA-Z ]+/;
+  const emailPattern = /[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]+/;
 
   return (
     <GradientBackground>
@@ -25,6 +25,11 @@ const StartScreen = () => {
             warningText="Please enter a valid name" 
             validationPattern={namePattern} />
           <Text style={styles.label} >Email Address</Text>
+          <InputBox 
+            placeholder="Enter your email" 
+            keyboardType="email-address" 
+            warningText="Please enter a valid email" 
+            validationPattern={emailPattern} />
           <Text style={styles.label} >Phone number</Text>
           <Checkbox />
 
