@@ -4,16 +4,21 @@ import Checkbox from 'expo-checkbox';
 
 import GradientBackground from '../components/GradientBackground'
 import colors from '../components/Colors'
+import Card from '../components/Card'
 
 const StartScreen = () => {
   return (
     <GradientBackground>
       <View style={styles.container}>
-        <View style={styles.card}>
-          <Text>Start Screen</Text>
+        <Card>
+
+          <Text style={styles.label} >Name</Text>
+          <Text style={styles.label} >Email Address</Text>
           <Checkbox />
-        </View>
+
+        </Card>
       </View>
+      
     </GradientBackground>
     
   )
@@ -25,16 +30,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  card: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.card_background,
-    height: '70%',
-    width: '80%',
-    borderRadius: 20,
-    shadowOffset: { width: 10, height: 10 },
-    shadowRadius: 20,
-  }
+  label: {
+    fontSize: 20,
+    color: colors.primary,
+    margin: 5,
+  },
 });
 
 export default StartScreen
