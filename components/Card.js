@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
       shadowOffset: { width: 10, height: 14 },
       shadowRadius: 10,
       shadowOpacity: 0.1,
+      elevation: 10,  // Shadow prop doesn't work on Android, use elevation instead
     },
   });
 
