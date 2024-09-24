@@ -3,6 +3,7 @@ import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import { useState } from 'react';
 
 import StartScreen from './screens/StartScreen';
+import ConfirmScreen from './screens/ConfirmScreen';
 import colors from './components/Colors';
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
     setReceivedEmail(email);
     setReceivedPhoneNumber(phoneNumber);
     console.log("name:", name,"email:", email,"phone:", phoneNumber);
+    setModalVisible(true);
   }
 
   return (
@@ -26,7 +28,13 @@ export default function App() {
       <StartScreen 
         registerHandler={handleRegister}
       />
-      
+
+      <ConfirmScreen 
+        modalVisibile={modalVisible}
+        userName={receivedName}
+        userEmail={receivedEmail}
+        userPhoneNumber={receivedPhoneNumber} 
+      />      
 
     </SafeAreaView>
     

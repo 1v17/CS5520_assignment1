@@ -1,7 +1,7 @@
-import { View, Text, TextInput, StyleSheet, Keyboard, TouchableWithoutFeedback } from 'react-native'
-import React from 'react'
+import { View, Text, TextInput, StyleSheet, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import React from 'react';
 
-import colors from './Colors'
+import colors from './Colors';
 
 const InputBox = ({value, onChangeText, placeholder, keyboardType, warningText, validationPattern}) => {
 
