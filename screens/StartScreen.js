@@ -150,11 +150,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 15,
   },
-  registerButton: {
-    color: colors.primary,
-    padding: 5,
-    borderRadius: 5,
-  },
   inputSection: {
     alignItems: 'flex-start',
   },
