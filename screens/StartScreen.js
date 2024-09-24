@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput, Keyboard, TouchableWithoutFeedback } from 'react-native'
+import { View, Text, StyleSheet, TextInput, Keyboard, TouchableWithoutFeedback, Button } from 'react-native'
 import React from 'react'
 import Checkbox from 'expo-checkbox';
 import { useState } from 'react';
@@ -16,37 +16,61 @@ const StartScreen = () => {
 
   const [isChecked, setChecked] = useState(false);
 
+  function handleReset() {
+    console.log('Reset button pressed');
+  }
+
+  function handleRegister() {
+    console.log('Register button pressed');
+  }
+
   return (
     <GradientBackground>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false} >
         <View style={styles.container}>
           <Card>
+            <View style={styles.inputSection} >
 
-            <Text style={styles.label} >Name</Text>
-            <InputBox 
-              placeholder="Enter your name" 
-              keyboardType="default" 
-              warningText="Please enter a valid name" 
-              validationPattern={namePattern} />
-            <Text style={styles.label} >Email Address</Text>
-            <InputBox 
-              placeholder="Enter your email" 
-              keyboardType="email-address" 
-              warningText="Please enter a valid email" 
-              validationPattern={emailPattern} />
-            <Text style={styles.label} >Phone number</Text>
-            <InputBox 
-              placeholder="Enter phone number" 
-              keyboardType="number-pad" 
-              warningText="Please enter a valid phone number" 
-              validationPattern={phonePattern} />
-            <View style={styles.checkboxSection} >
-              <Checkbox
-                value={isChecked}
-                onValueChange={setChecked}
-                color={isChecked ? colors.primary : undefined} />
-              <Text style={styles.label} >I am not a robot</Text>
+              <Text style={styles.label} >Name</Text>
+              <InputBox 
+                placeholder="Enter your name" 
+                keyboardType="default" 
+                warningText="Please enter a valid name" 
+                validationPattern={namePattern} />
+              <Text style={styles.label} >Email Address</Text>
+              <InputBox 
+                placeholder="Enter your email" 
+                keyboardType="email-address" 
+                warningText="Please enter a valid email" 
+                validationPattern={emailPattern} />
+              <Text style={styles.label} >Phone number</Text>
+              <InputBox 
+                placeholder="Enter phone number" 
+                keyboardType="number-pad" 
+                warningText="Please enter a valid phone number" 
+                validationPattern={phonePattern} />
+              
+              {/* the checkbox section */}
+              <View style={styles.checkboxSection} >
+                <Checkbox
+                  value={isChecked}
+                  onValueChange={setChecked}
+                  color={isChecked ? colors.primary : undefined} />
+                <Text style={styles.label} >I am not a robot</Text>
+              </View>
+
             </View>
+
+            {/* the buttons section */}
+            <View style={styles.buttonSection} >
+              <Button
+                title="Reset"
+                onPress={handleReset} />
+              <Button
+                title="Register"
+                onPress={handleRegister} />
+            </View>
+
           </Card>
         </View>
       </TouchableWithoutFeedback>
@@ -73,6 +97,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: 10,
+  },
+  buttonSection: {
+    marginVertical: 10,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  registerButton: {
+    color: colors.primary,
+    padding: 5,
+    borderRadius: 5,
+  },
+  inputSection: {
+    alignItems: 'flex-start',
   },
 });
 

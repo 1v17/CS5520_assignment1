@@ -15,7 +15,7 @@ const Card = ({children}) => {
 const styles = StyleSheet.create({
     card: {
       padding: '10%',
-      alignItems: 'flex-start',
+      alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: colors.card_background,
       height: '70%',
