@@ -14,34 +14,40 @@ const StartScreen = () => {
   const emailPattern = /[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]+/;
   const phonePattern = /^[0-9]{9}[2-9]$/;
 
+  const [isChecked, setChecked] = useState(false);
+
   return (
     <GradientBackground>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false} >
-      <View style={styles.container}>
-        <Card>
+        <View style={styles.container}>
+          <Card>
 
-          <Text style={styles.label} >Name</Text>
-          <InputBox 
-            placeholder="Enter your name" 
-            keyboardType="default" 
-            warningText="Please enter a valid name" 
-            validationPattern={namePattern} />
-          <Text style={styles.label} >Email Address</Text>
-          <InputBox 
-            placeholder="Enter your email" 
-            keyboardType="email-address" 
-            warningText="Please enter a valid email" 
-            validationPattern={emailPattern} />
-          <Text style={styles.label} >Phone number</Text>
-          <InputBox 
-            placeholder="Enter phone number" 
-            keyboardType="number-pad" 
-            warningText="Please enter a valid phone number" 
-            validationPattern={phonePattern} />
-          <Checkbox />
+            <Text style={styles.label} >Name</Text>
+            <InputBox 
+              placeholder="Enter your name" 
+              keyboardType="default" 
+              warningText="Please enter a valid name" 
+              validationPattern={namePattern} />
+            <Text style={styles.label} >Email Address</Text>
+            <InputBox 
+              placeholder="Enter your email" 
+              keyboardType="email-address" 
+              warningText="Please enter a valid email" 
+              validationPattern={emailPattern} />
+            <Text style={styles.label} >Phone number</Text>
+            <InputBox 
+              placeholder="Enter phone number" 
+              keyboardType="number-pad" 
+              warningText="Please enter a valid phone number" 
+              validationPattern={phonePattern} />
+            <Checkbox
+              style={styles.checkbox}
+              value={isChecked}
+              onValueChange={setChecked}
+              color={isChecked ? colors.primary : undefined} />
 
-        </Card>
-      </View>
+          </Card>
+        </View>
       </TouchableWithoutFeedback>
     </GradientBackground>
     
@@ -72,6 +78,9 @@ const styles = StyleSheet.create({
     color: colors.secondary,
     fontSize: 10,
   },
+  checkbox: {
+    margin: 5,
+  },  
 });
 
 export default StartScreen
