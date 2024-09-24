@@ -21,7 +21,7 @@ const InputBox = ({placeholder, keyboardType, warningText, validationPattern}) =
         onBlur={() => {setShowWarning(false)}}
         onFocus={() => {setShowWarning(true)}}
         />
-        {!validationPattern.test(text) && showWarning && <Text style={styles.invalid_warning}>
+        {!validationPattern.test(text) && showWarning && <Text style={styles.invalidWarning}>
           {warningText}</Text>}
     </View>
   )
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     margin: 5,
     fontSize: 17,
   },
-  invalid_warning: {
+  invalidWarning: {
     paddingLeft: 5,
     color: colors.secondary,
     fontSize: 10,

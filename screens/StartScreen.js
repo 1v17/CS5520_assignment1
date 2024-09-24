@@ -40,12 +40,13 @@ const StartScreen = () => {
               keyboardType="number-pad" 
               warningText="Please enter a valid phone number" 
               validationPattern={phonePattern} />
-            <Checkbox
-              style={styles.checkbox}
-              value={isChecked}
-              onValueChange={setChecked}
-              color={isChecked ? colors.primary : undefined} />
-
+            <View style={styles.checkboxSection} >
+              <Checkbox
+                value={isChecked}
+                onValueChange={setChecked}
+                color={isChecked ? colors.primary : undefined} />
+              <Text style={styles.label} >I am not a robot</Text>
+            </View>
           </Card>
         </View>
       </TouchableWithoutFeedback>
@@ -65,22 +66,14 @@ const styles = StyleSheet.create({
     color: colors.primary,
     margin: 5,
   },
-  input: {
-    width: '80%',
-    padding: 10,
-    borderColor: colors.primary,
-    borderBottomWidth: 2,
-    borderRadius: 5,
+  checkboxSection: {
     margin: 5,
-    fontSize: 17,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 10,
   },
-  invalid_warning: {
-    color: colors.secondary,
-    fontSize: 10,
-  },
-  checkbox: {
-    margin: 5,
-  },  
 });
 
 export default StartScreen
