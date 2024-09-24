@@ -14,7 +14,22 @@ const StartScreen = () => {
   const emailPattern = /[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]+/;
   const phonePattern = /^[0-9]{9}[2-9]$/;
 
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [isChecked, setChecked] = useState(false);
+
+  function handleNameChange(changedText) {
+    setName(changedText);
+  }
+
+  function handleEmailChange(changedText) {
+    setEmail(changedText);
+  }
+
+  function handlePhoneChange(changedText) {
+    setPhoneNumber(changedText);
+  }
 
   function handleReset() {
     console.log('Reset button pressed');
@@ -33,18 +48,24 @@ const StartScreen = () => {
 
               <Text style={styles.label} >Name</Text>
               <InputBox 
+                value={name}
+                onChangeText={handleNameChange}
                 placeholder="Enter your name" 
                 keyboardType="default" 
                 warningText="Please enter a valid name" 
                 validationPattern={namePattern} />
               <Text style={styles.label} >Email Address</Text>
               <InputBox 
+                value={email}
+                onChangeText={handleEmailChange}
                 placeholder="Enter your email" 
                 keyboardType="email-address" 
                 warningText="Please enter a valid email" 
                 validationPattern={emailPattern} />
               <Text style={styles.label} >Phone number</Text>
               <InputBox 
+                value={phoneNumber}
+                onChangeText={handlePhoneChange}
                 placeholder="Enter phone number" 
                 keyboardType="number-pad" 
                 warningText="Please enter a valid phone number" 

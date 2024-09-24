@@ -3,9 +3,8 @@ import React from 'react'
 
 import colors from './Colors'
 
-const InputBox = ({placeholder, keyboardType, warningText, validationPattern}) => {
+const InputBox = ({value, onChangeText, placeholder, keyboardType, warningText, validationPattern}) => {
 
-  const [text, setText] = React.useState('');
   const [showWarning, setShowWarning] = React.useState(false);
 
   return (
@@ -13,15 +12,13 @@ const InputBox = ({placeholder, keyboardType, warningText, validationPattern}) =
       <TextInput style={styles.input}
         placeholder={placeholder}
         keyboardType={keyboardType}
-        value={text}
+        value={value}
         autoFocus={true}
-        onChangeText={function (changedText) {
-          setText(changedText);
-        }}
+        onChangeText={onChangeText}
         onBlur={() => {setShowWarning(false)}}
         onFocus={() => {setShowWarning(true)}}
         />
-        {!validationPattern.test(text) && showWarning && <Text style={styles.invalidWarning}>
+        {!validationPattern.test(value) && showWarning && <Text style={styles.invalidWarning}>
           {warningText}</Text>}
     </View>
   )
