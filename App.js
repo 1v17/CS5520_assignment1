@@ -6,11 +6,21 @@ import StartScreen from './screens/StartScreen';
 import colors from './components/Colors';
 
 export default function App() {
+
+  const [receivedData, setReceivedData] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
+
+  function handleRegister() {
+    console.log('Register button pressed from App.js');
+  }
+
   return (
     <SafeAreaView style={styles.container} >
       <StatusBar style="auto" />
 
-      <StartScreen />
+      <StartScreen 
+        registerHandler={handleRegister}
+      />
       
 
     </SafeAreaView>

@@ -8,7 +8,7 @@ import colors from '../components/Colors'
 import Card from '../components/Card'
 import InputBox from '../components/InputBox';
 
-const StartScreen = () => {
+const StartScreen = ({registerHandler}) => {
 
   const namePattern = /[_-a-zA-Z ]+/;
   const emailPattern = /[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]+/;
@@ -40,7 +40,11 @@ const StartScreen = () => {
   }
 
   function handleRegister() {
-    console.log('Register button pressed');
+    if (namePattern.test(name) && emailPattern.test(email) && phonePattern.test(phoneNumber) && isChecked) {
+      registerHandler();
+    } else {
+      alert('Please fill in all the fields correctly');
+    }
   }
 
   return (
