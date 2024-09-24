@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TextInput, Keyboard, TouchableWithoutFeedback, Button } from 'react-native'
 import React from 'react'
 import Checkbox from 'expo-checkbox';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import GradientBackground from '../components/GradientBackground'
 import colors from '../components/Colors'
@@ -18,6 +18,7 @@ const StartScreen = ({registerHandler}) => {
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isChecked, setChecked] = useState(false);
+  const [registerDisabled, setRegisterDisabled] = useState(true);
 
   function handleNameChange(changedText) {
     setName(changedText);
@@ -44,8 +45,17 @@ const StartScreen = ({registerHandler}) => {
       registerHandler(name, email, phoneNumber);
     } else {
       alert('Please fill in all the fields correctly');
+      // TODO: change this alert to add more info
     }
   }
+
+  function validateInputs() {
+    setRegisterDisabled(!(namePattern.test(name) && emailPattern.test(email) && phonePattern.test(phoneNumber) && isChecked));
+  }
+
+  useEffect(() => {
+    validateInputs();
+  }, [name, email, phoneNumber, isChecked]);
 
   return (
     <GradientBackground>
@@ -105,6 +115,7 @@ const StartScreen = ({registerHandler}) => {
                 title="Register"
                 onPress={handleRegister}
                 color={colors.rightButton}
+                disabled={registerDisabled}
               />
             </View>
 
