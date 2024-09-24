@@ -11,18 +11,18 @@ const InputBox = ({placeholder, keyboardType, warningText, validationPattern}) =
   return (
     <View style={styles.container} >
       <TextInput style={styles.input}
-            placeholder={placeholder}
-            keyboardType={keyboardType}
-            value={text}
-            autoFocus={true}
-            onChangeText={function (changedText) {
-              setText(changedText);
-            }}
-            onBlur={() => {setShowWarning(false)}}
-            onFocus={() => {setShowWarning(true)}}
-           />
-           {!validationPattern.test(text) && showWarning && <Text style={styles.invalid_warning}>
-              {warningText}</Text>}
+        placeholder={placeholder}
+        keyboardType={keyboardType}
+        value={text}
+        autoFocus={true}
+        onChangeText={function (changedText) {
+          setText(changedText);
+        }}
+        onBlur={() => {setShowWarning(false)}}
+        onFocus={() => {setShowWarning(true)}}
+        />
+        {!validationPattern.test(text) && showWarning && <Text style={styles.invalid_warning}>
+          {warningText}</Text>}
     </View>
   )
 }

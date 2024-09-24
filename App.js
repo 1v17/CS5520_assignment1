@@ -4,7 +4,6 @@ import { useState } from 'react';
 
 import StartScreen from './screens/StartScreen';
 import colors from './components/Colors';
-import GradientBackground from './components/GradientBackground';
 
 export default function App() {
   return (
