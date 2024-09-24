@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput } from 'react-native'
+import { View, Text, StyleSheet, TextInput, Keyboard, TouchableWithoutFeedback } from 'react-native'
 import React from 'react'
 import Checkbox from 'expo-checkbox';
 import { useState } from 'react';
@@ -16,6 +16,7 @@ const StartScreen = () => {
 
   return (
     <GradientBackground>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false} >
       <View style={styles.container}>
         <Card>
 
@@ -41,7 +42,7 @@ const StartScreen = () => {
 
         </Card>
       </View>
-      
+      </TouchableWithoutFeedback>
     </GradientBackground>
     
   )
