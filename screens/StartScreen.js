@@ -7,6 +7,7 @@ import GradientBackground from '../components/GradientBackground'
 import colors from '../components/Colors'
 import Card from '../components/Card'
 import InputBox from '../components/InputBox';
+import CustomButton from '../components/CustomButton';
 
 const StartScreen = ({registerHandler}) => {
 
@@ -103,14 +104,15 @@ const StartScreen = ({registerHandler}) => {
 
             {/* the buttons section */}
             <View style={styles.buttonSection} >
-              <Button
+              <CustomButton
                 title="Reset"
-                onPress={handleReset}
+                pressHandler={handleReset}
                 color={colors.leftButton}
+                disabled={false}
               />
-              <Button
+              <CustomButton
                 title="Register"
-                onPress={handleRegister}
+                pressHandler={handleRegister}
                 color={colors.rightButton}
                 disabled={registerDisabled}
               />
