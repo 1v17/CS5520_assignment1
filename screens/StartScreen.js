@@ -32,7 +32,11 @@ const StartScreen = () => {
   }
 
   function handleReset() {
-    console.log('Reset button pressed');
+    // console.log('Reset button pressed');
+    setName('');
+    setEmail('');
+    setPhoneNumber('');
+    setChecked(false);
   }
 
   function handleRegister() {
