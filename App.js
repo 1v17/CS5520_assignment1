@@ -17,7 +17,7 @@ export default function App() {
     setReceivedName(name);
     setReceivedEmail(email);
     setReceivedPhoneNumber(phoneNumber);
-    console.log("name:", name,"email:", email,"phone:", phoneNumber);
+    // console.log("name:", name,"email:", email,"phone:", phoneNumber);
     setModalVisible(true);
   }
 

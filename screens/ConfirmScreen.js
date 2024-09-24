@@ -8,11 +8,23 @@ import CustomButton from '../components/CustomButton';
 const ConfirmScreen = ({modalVisibile, userName, userEmail, userPhoneNumber}) => {
   return (
     <Modal visible={modalVisibile} transparent={true} >
-      <View>
+      <View style={styles.container} >
+        <Card>
         
+          <Text >Name: {userName}</Text>
+        
+        </Card>
       </View>
     </Modal>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 export default ConfirmScreen
