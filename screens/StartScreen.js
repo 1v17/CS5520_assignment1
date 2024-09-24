@@ -41,7 +41,7 @@ const StartScreen = ({registerHandler}) => {
 
   function handleRegister() {
     if (namePattern.test(name) && emailPattern.test(email) && phonePattern.test(phoneNumber) && isChecked) {
-      registerHandler();
+      registerHandler(name, email, phoneNumber);
     } else {
       alert('Please fill in all the fields correctly');
     }
@@ -61,7 +61,8 @@ const StartScreen = ({registerHandler}) => {
                 placeholder="Enter your name" 
                 keyboardType="default" 
                 warningText="Please enter a valid name" 
-                validationPattern={namePattern} />
+                validationPattern={namePattern}
+              />
               <Text style={styles.label} >Email Address</Text>
               <InputBox 
                 value={email}
@@ -69,7 +70,8 @@ const StartScreen = ({registerHandler}) => {
                 placeholder="Enter your email" 
                 keyboardType="email-address" 
                 warningText="Please enter a valid email" 
-                validationPattern={emailPattern} />
+                validationPattern={emailPattern}
+              />
               <Text style={styles.label} >Phone number</Text>
               <InputBox 
                 value={phoneNumber}
@@ -77,14 +79,16 @@ const StartScreen = ({registerHandler}) => {
                 placeholder="Enter phone number" 
                 keyboardType="number-pad" 
                 warningText="Please enter a valid phone number" 
-                validationPattern={phonePattern} />
+                validationPattern={phonePattern}
+              />
               
               {/* the checkbox section */}
               <View style={styles.checkboxSection} >
                 <Checkbox
                   value={isChecked}
                   onValueChange={setChecked}
-                  color={isChecked ? colors.primary : undefined} />
+                  color={isChecked ? colors.primary : undefined} 
+                />
                 <Text style={styles.label} >I am not a robot</Text>
               </View>
 

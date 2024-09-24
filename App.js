@@ -7,11 +7,16 @@ import colors from './components/Colors';
 
 export default function App() {
 
-  const [receivedData, setReceivedData] = useState("");
+  const [receivedName, setReceivedName] = useState("");
+  const [receivedEmail, setReceivedEmail] = useState("");
+  const [receivedPhoneNumber, setReceivedPhoneNumber] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
 
-  function handleRegister() {
-    console.log('Register button pressed from App.js');
+  function handleRegister(name, email, phoneNumber) {
+    setReceivedName(name);
+    setReceivedEmail(email);
+    setReceivedPhoneNumber(phoneNumber);
+    console.log("name:", name,"email:", email,"phone:", phoneNumber);
   }
 
   return (
