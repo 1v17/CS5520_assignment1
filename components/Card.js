@@ -18,8 +18,6 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: colors.card_background,
-      height: '70%',
-      width: '80%',
       shadowColor: 'black',
       borderRadius: 20,
       shadowOffset: { width: 10, height: 14 },

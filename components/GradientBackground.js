@@ -9,7 +9,7 @@ const GradientBackground = ({children}) => {
     <View style={styles.container}>
       <LinearGradient
         // Button Linear Gradient
-        colors={[colors.gradient_light, colors.gradient_dark]}
+        colors={[colors.gradientLight, colors.gradientDark]}
         style={styles.gradient} >
           {children}
       </LinearGradient>

@@ -94,10 +94,14 @@ const StartScreen = ({registerHandler}) => {
             <View style={styles.buttonSection} >
               <Button
                 title="Reset"
-                onPress={handleReset} />
+                onPress={handleReset}
+                color={colors.leftButton}
+              />
               <Button
                 title="Register"
-                onPress={handleRegister} />
+                onPress={handleRegister}
+                color={colors.rightButton}
+              />
             </View>
 
           </Card>
@@ -130,9 +134,9 @@ const styles = StyleSheet.create({
   buttonSection: {
     marginVertical: 10,
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    alignItems: 'space-between',
+    justifyContent: 'center',
+    gap: 15,
   },
   registerButton: {
     color: colors.primary,

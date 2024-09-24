@@ -2,9 +2,10 @@ const colors = {
     primary: 'royalblue',
     secondary: 'midnightblue',
     card_background: 'seashell',
-    gradient_light: 'papayawhip',
-    gradient_dark: 'peachpuff',
-    button: 'sienna',
+    gradientLight: 'papayawhip',
+    gradientDark: 'peachpuff',
+    leftButton: 'coral',
+    rightButton: 'royalblue',
 };
 
 export default colors;
