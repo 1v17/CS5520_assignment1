@@ -43,9 +43,6 @@ const StartScreen = ({registerHandler}) => {
   function handleRegister() {
     if (namePattern.test(name) && emailPattern.test(email) && phonePattern.test(phoneNumber) && isChecked) {
       registerHandler(name, email, phoneNumber);
-    } else {
-      alert('Please fill in all the fields correctly');
-      // TODO: change this alert to add more info
     }
   }
 
