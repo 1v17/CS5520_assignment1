@@ -5,7 +5,8 @@ import colors from '../components/Colors';
 import Card from '../components/Card';
 import CustomButton from '../components/CustomButton';
 
-const ConfirmScreen = ({modalVisibile, userName, userEmail, userPhoneNumber, goBackHandler}) => {
+const ConfirmScreen = ({modalVisibile, userName, userEmail, 
+                        userPhoneNumber, goBackHandler, continueHandler}) => {
 
   function handleGoBack() {
     goBackHandler();
@@ -13,7 +14,7 @@ const ConfirmScreen = ({modalVisibile, userName, userEmail, userPhoneNumber, goB
 
   function handleContinue() {
     console.log("Continue");
-    // TODO: change this to make game screen visible
+    continueHandler();
   }
 
   return (
@@ -33,13 +34,13 @@ const ConfirmScreen = ({modalVisibile, userName, userEmail, userPhoneNumber, goB
             <CustomButton
               title="Go back"
               pressHandler={handleGoBack}
-              color={colors.leftButton}
+              color={colors.warningButton}
               disabled={false}
             />
             <CustomButton
               title="Continue"
               pressHandler={handleContinue}
-              color={colors.rightButton}
+              color={colors.mainButton}
               disabled={false}
             />
 

@@ -3,9 +3,9 @@ import React from 'react'
 import Checkbox from 'expo-checkbox';
 import { useState, useEffect } from 'react';
 
-import GradientBackground from '../components/GradientBackground'
-import colors from '../components/Colors'
-import Card from '../components/Card'
+import GradientBackground from '../components/GradientBackground';
+import colors from '../components/Colors';
+import Card from '../components/Card';
 import InputBox from '../components/InputBox';
 import CustomButton from '../components/CustomButton';
 
@@ -107,13 +107,13 @@ const StartScreen = ({registerHandler}) => {
               <CustomButton
                 title="Reset"
                 pressHandler={handleReset}
-                color={colors.leftButton}
+                color={colors.warningButton}
                 disabled={false}
               />
               <CustomButton
                 title="Register"
                 pressHandler={handleRegister}
-                color={colors.rightButton}
+                color={colors.mainButton}
                 disabled={registerDisabled}
               />
             </View>

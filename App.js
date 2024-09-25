@@ -13,6 +13,7 @@ export default function App() {
   const [receivedEmail, setReceivedEmail] = useState("");
   const [receivedPhoneNumber, setReceivedPhoneNumber] = useState("");
   const [confirmScreenVisible, setConfirmScreenVisible] = useState(false);
+  const [gameScreenVisible, setGameScreenVisible] = useState(false);
 
   function handleRegister(name, email, phoneNumber) {
     setReceivedName(name);
@@ -26,13 +27,18 @@ export default function App() {
     setConfirmScreenVisible(false);
   }
 
+  function handleContinue() {
+    setConfirmScreenVisible(false);
+    setGameScreenVisible(true);
+  }
+
   return (
     <SafeAreaView style={styles.container} >
       <StatusBar style="auto" />
 
-      <StartScreen 
+      {!gameScreenVisible && <StartScreen 
         registerHandler={handleRegister}
-      />
+      />}
 
       <ConfirmScreen 
         modalVisibile={confirmScreenVisible}
@@ -40,7 +46,12 @@ export default function App() {
         userEmail={receivedEmail}
         userPhoneNumber={receivedPhoneNumber}
         goBackHandler={handleGoBack}
-      />      
+        continueHandler={handleContinue}
+      />
+
+      {gameScreenVisible && <GameScreen
+        userPhoneNumber={receivedPhoneNumber}
+        />}
 
     </SafeAreaView>
     

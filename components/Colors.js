@@ -4,8 +4,8 @@ const colors = {
     card_background: 'seashell',
     gradientLight: 'papayawhip',
     gradientDark: 'peachpuff',
-    leftButton: 'coral',
-    rightButton: 'royalblue',
+    warningButton: 'coral',
+    mainButton: 'royalblue',
     dimBackground: 'rgba(0,0,0,0.5)',
 };
 
