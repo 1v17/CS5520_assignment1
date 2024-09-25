@@ -6,6 +6,7 @@ const colors = {
     gradientDark: 'peachpuff',
     leftButton: 'coral',
     rightButton: 'royalblue',
+    dimBackground: 'rgba(0,0,0,0.5)',
 };
 
 export default colors;

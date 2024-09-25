@@ -7,7 +7,7 @@ import CustomButton from '../components/CustomButton';
 
 const ConfirmScreen = ({modalVisibile, userName, userEmail, userPhoneNumber}) => {
   return (
-    <Modal visible={modalVisibile} transparent={true} >
+    <Modal animationType="slide" visible={modalVisibile} transparent={true} >
       <View style={styles.container} >
         <Card>
         
@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: colors.dimBackground,
   },
 });
 
