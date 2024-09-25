@@ -61,6 +61,7 @@ const StartScreen = ({registerHandler}) => {
     <GradientBackground>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false} >
         <View style={styles.container}>
+          <Text style={styles.title} >Welcome</Text>
           <Card>
             <View style={styles.inputSection} >
 
@@ -156,6 +157,12 @@ const styles = StyleSheet.create({
   },
   inputSection: {
     alignItems: 'flex-start',
+  },
+  title: {
+    fontSize: 30,
+    fontWeight: "bold",
+    color: colors.primary,
+    padding: "5%",
   },
 });
 
