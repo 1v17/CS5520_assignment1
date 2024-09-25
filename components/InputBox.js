@@ -15,7 +15,7 @@ const InputBox = ({value, onChangeText, placeholder, keyboardType, warningText, 
         value={value}
         autoFocus={true}
         onChangeText={onChangeText}
-        // onBlur={() => {setShowWarning(false)}}
+        onBlur={() => {setShowWarning(false)}}
         onFocus={() => {setShowWarning(true)}}
         />
         {!validationPattern.test(value) && showWarning && <Text style={styles.invalidWarning}>
