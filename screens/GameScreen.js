@@ -8,18 +8,27 @@ import Card from '../components/Card';
 import InputBox from '../components/InputBox';
 import CustomButton from '../components/CustomButton';
 
-const GameScreen = ({userPhoneNumber}) => {
+const GameScreen = ({userPhoneNumber, restartHandler}) => {
 
   const numberPattern = /^(100|[1-9][0-9]?|0)$/;
 
   const [userGuess, setUserGuess] = useState('');
+
+  function handleReset() {
+    restartHandler();
+  }
 
   return (
     <GradientBackground>
       <View style={styles.wrapper}>
       {/* add TouchableWithoutFeedback if needed to */}
         <View style={styles.restartContainer}>
-          <Text>Game</Text>
+          <CustomButton
+            title="Restart"
+            pressHandler={handleReset}
+            color={colors.mainButton}
+            disabled={false}
+          />
         </View>
         <View style={styles.container}>
           <Card>

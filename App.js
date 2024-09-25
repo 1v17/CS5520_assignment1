@@ -32,6 +32,10 @@ export default function App() {
     setGameScreenVisible(true);
   }
 
+  function handleRestart() {
+    setGameScreenVisible(false);
+  }
+
   return (
     <SafeAreaView style={styles.container} >
       <StatusBar style="auto" />
@@ -51,6 +55,7 @@ export default function App() {
 
       {gameScreenVisible && <GameScreen
         userPhoneNumber={receivedPhoneNumber}
+        restartHandler={handleRestart}
         />}
 
     </SafeAreaView>
