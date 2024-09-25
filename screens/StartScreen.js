@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput, Keyboard, TouchableWithoutFeedback, Button } from 'react-native'
+import { View, Text, StyleSheet, Alert, Keyboard, TouchableWithoutFeedback, Button } from 'react-native'
 import React from 'react'
 import Checkbox from 'expo-checkbox';
 import { useState, useEffect } from 'react';
@@ -11,7 +11,7 @@ import CustomButton from '../components/CustomButton';
 
 const StartScreen = ({registerHandler}) => {
 
-  const namePattern = /[_-a-zA-Z ]+/;
+  const namePattern = /[a-zA-Z][_-a-zA-Z ]*/;
   const emailPattern = /[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]+/;
   const phonePattern = /^[0-9]{9}[2-9]$/;
 
@@ -44,11 +44,13 @@ const StartScreen = ({registerHandler}) => {
   function handleRegister() {
     if (namePattern.test(name) && emailPattern.test(email) && phonePattern.test(phoneNumber) && isChecked) {
       registerHandler(name, email, phoneNumber);
+    } else {
+      Alert.alert('Invalid input', 'Check the input values');
     }
   }
 
   function validateInputs() {
-    setRegisterDisabled(!(namePattern.test(name) && emailPattern.test(email) && phonePattern.test(phoneNumber) && isChecked));
+    setRegisterDisabled(!(name.length > 0 && email.length > 0 && phoneNumber.length > 0 && isChecked));
   }
 
   useEffect(() => {
