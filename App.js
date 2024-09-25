@@ -21,6 +21,10 @@ export default function App() {
     setModalVisible(true);
   }
 
+  function handleGoBack() {
+    setModalVisible(false);
+  }
+
   return (
     <SafeAreaView style={styles.container} >
       <StatusBar style="auto" />
@@ -33,7 +37,8 @@ export default function App() {
         modalVisibile={modalVisible}
         userName={receivedName}
         userEmail={receivedEmail}
-        userPhoneNumber={receivedPhoneNumber} 
+        userPhoneNumber={receivedPhoneNumber}
+        goBackHandler={handleGoBack}
       />      
 
     </SafeAreaView>
