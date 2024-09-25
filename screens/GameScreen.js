@@ -11,8 +11,24 @@ import CustomButton from '../components/CustomButton';
 const GameScreen = ({userPhoneNumber, restartHandler}) => {
 
   const numberPattern = /^(100|[1-9][0-9]?|0)$/;
+  const lastDigitOfPhone = parseInt(userPhoneNumber.slice(-1));
+  const LOWER_BOUND = 1;
+  const UPPER_BOUND = 100;
+  const MULTIPLIER_UPPER_BOUND = 50;
 
   const [userGuess, setUserGuess] = useState('');
+
+
+  function generateTarget(base) {
+    let result;
+    do {
+      const multiplier = Math.floor(Math.random() * MULTIPLIER_UPPER_BOUND) + 1;
+      result = base * multiplier;
+    } while (result < LOWER_BOUND || result > UPPER_BOUND);
+    return result;
+  }
+
+  const randomMultiple = generateTarget(lastDigitOfPhone);
 
   function handleReset() {
     restartHandler();
