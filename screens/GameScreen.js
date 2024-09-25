@@ -16,17 +16,35 @@ const GameScreen = ({userPhoneNumber}) => {
 
   return (
     <GradientBackground>
-        <View style={styles.container}>
-          <Text>GameScreen</Text>
+      <View style={styles.wrapper}>
+      {/* add TouchableWithoutFeedback if needed to */}
+        <View style={styles.restartContainer}>
+          <Text>Game</Text>
         </View>
+        <View style={styles.container}>
+          <Card>
+            <Text>Game</Text>
+          </Card>
+        </View>
+      </View>
     </GradientBackground>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 4,
     alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  restartContainer: {
+    flex: 1,
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    margin: "10%",
+  },
+  wrapper: {
+    flex: 1,
     justifyContent: 'center',
   },
 });

@@ -13,7 +13,7 @@ const ConfirmScreen = ({modalVisibile, userName, userEmail,
   }
 
   function handleContinue() {
-    console.log("Continue");
+    // console.log("Continue");
     continueHandler();
   }
 
