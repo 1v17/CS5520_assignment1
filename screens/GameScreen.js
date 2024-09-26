@@ -25,6 +25,7 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
   const [timeLeft, setTimeLeft] = useState(sixtySeconds);
   const [gameOver, setGameOver] = useState(false);
   const [feedback, setFeedback] = useState('');
+  const [feedbackCardVisible, setFeedbackCardVisible] = useState(false);
   const [hintUsed, setHintUsed] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
 
@@ -58,10 +59,22 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
     setHintUsed(false);
     setGameStarted(false);
     setUserGuess('');
+    setFeedbackCardVisible(false);
+  }
+
+  function handleTryAgain() {
+    setFeedbackCardVisible(false);
+    setUserGuess('');
+  }
+
+  function handleEndGame() {
+    setGameOver(true);
+    setFeedback('You ended the game.\nAttempts used: ' + (maxAttempts - attemptsLeft + 1));
   }
 
   function handleGuess() {
     if (numberPattern.test(userGuess) && parseInt(userGuess) % lastDigitOfPhone === 0) {
+      setFeedbackCardVisible(true);
       if (parseInt(userGuess) === target) {
         setGameOver(true);
         setFeedback('You guessed correct!\nAttempts used: ' + (maxAttempts - attemptsLeft + 1));
@@ -140,7 +153,7 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
           }
 
           { // the card for game
-            gameStarted && !gameOver &&
+            gameStarted && !gameOver && !feedbackCardVisible &&
             <View style={styles.container}>
               <Card>
                 <Text style={styles.mainText} >{gameInstructions}</Text>
@@ -152,7 +165,11 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
                   warningText={null}
                   validationPattern={/.*/s}
                 />
-                
+                {hintUsed && 
+                  <Text style={styles.secondaryText} >
+                    {(target > 50) ? "The number is between 50 and 100." : "The number is between 1 and 50."}
+                  </Text>
+                }
                 <Text style={styles.secondaryText} >Attempts left: {attemptsLeft}</Text>
                 <Text style={styles.secondaryText} >Time left: {timeLeft}s</Text>
                 <View style={styles.buttonSection} >
@@ -162,9 +179,36 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
                     color={colors.mainButton}
                     disabled={false}
                   />
+                </View>
+                <View style={styles.buttonSection} >
                   <CustomButton
                     title="Use a hint"
-                    pressHandler={handleGuess}
+                    pressHandler={handleHint}
+                    color={colors.mainButton}
+                    disabled={hintUsed}
+                  />
+                </View>
+              </Card>
+            </View>
+          }
+
+          { // the card for feedback
+            gameStarted && !gameOver && feedbackCardVisible &&
+            <View style={styles.container}>
+              <Card>
+                <Text style={styles.mainText} >{feedback}</Text>
+                <View style={styles.buttonSection} >
+                  <CustomButton
+                    title="Try again"
+                    pressHandler={handleTryAgain}
+                    color={colors.mainButton}
+                    disabled={false}
+                  />
+                </View>
+                <View style={styles.buttonSection} >
+                  <CustomButton
+                    title="End the game"
+                    pressHandler={handleEndGame}
                     color={colors.mainButton}
                     disabled={false}
                   />
@@ -172,9 +216,6 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
               </Card>
             </View>
           }
-
-
-
 
         </View>
       </TouchableWithoutFeedback>
@@ -207,12 +248,12 @@ const styles = StyleSheet.create({
   },
   secondaryText: {
     textAlign: 'center',
-    marginVertical: "5%",
+    marginVertical: "1%",
     color: colors.secondary,
     fontSize: 15,
   },
   buttonSection: {
-    marginVertical: "5%",
+    marginVertical: "3%",
   },
 });
 
