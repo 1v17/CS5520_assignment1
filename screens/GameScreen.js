@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Modal, Alert } from 'react-native';
+import { View, Text, StyleSheet, Modal, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 
@@ -26,7 +26,6 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
   const [gameOver, setGameOver] = useState(false);
   const [feedback, setFeedback] = useState('');
   const [hintUsed, setHintUsed] = useState(false);
-  const [hintVisible, setHintVisible] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
 
   function generateTarget(base) {
@@ -46,6 +45,10 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
     restartHandler();
   }
 
+  function handleHint() {
+    setHintUsed(true);
+  }
+
   function handleNewGame() {
     setTarget(generateTarget(lastDigitOfPhone));
     setAttemptsLeft(maxAttempts);
@@ -53,7 +56,6 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
     setGameOver(false);
     setFeedback('');
     setHintUsed(false);
-    setHintVisible(false);
     setGameStarted(false);
     setUserGuess('');
   }
@@ -92,46 +94,90 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
 
   return (
     <GradientBackground>
-      <View style={styles.wrapper}>
-      {/* add TouchableWithoutFeedback if needed to */}
-        <View style={styles.restartContainer}>
-          <CustomButton
-            title="Restart"
-            pressHandler={handleReset}
-            color={colors.mainButton}
-            disabled={false}
-          />
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false} >
+        <View style={styles.wrapper}>
+        {/* add TouchableWithoutFeedback if needed to */}
+          <View style={styles.restartContainer}>
+            <CustomButton
+              title="Restart"
+              pressHandler={handleReset}
+              color={colors.mainButton}
+              disabled={false}
+            />
+          </View>
+
+          { // the card for game over
+            gameOver && 
+            <View style={styles.container}>
+              <Card>
+                <Text style={styles.mainText} >The game is over!</Text>
+                <Text style={styles.mainText} >{feedback}</Text>
+                <CustomButton
+                  title="New game"
+                  pressHandler={handleNewGame}
+                  color={colors.mainButton}
+                  disabled={false}
+                />
+              </Card>
+            </View>
+          }
+
+          { // the card for game before it starts
+            !gameStarted &&
+            <View style={styles.container}>
+              <Card>
+                <Text style={styles.mainText} >{gameInstructions}</Text>
+                <View style={styles.buttonSection} >
+                  <CustomButton
+                    title="Start"
+                    pressHandler={handleStart}
+                    color={colors.mainButton}
+                    disabled={false}
+                  />
+                </View>
+              </Card>
+            </View>
+          }
+
+          { // the card for game
+            gameStarted && !gameOver &&
+            <View style={styles.container}>
+              <Card>
+                <Text style={styles.mainText} >{gameInstructions}</Text>
+
+                <InputBox
+                  value={userGuess}
+                  onChangeText={setUserGuess}
+                  keyboardType="number-pad"
+                  warningText={null}
+                  validationPattern={/.*/s}
+                />
+                
+                <Text style={styles.secondaryText} >Attempts left: {attemptsLeft}</Text>
+                <Text style={styles.secondaryText} >Time left: {timeLeft}s</Text>
+                <View style={styles.buttonSection} >
+                  <CustomButton
+                    title="Submit guess"
+                    pressHandler={handleGuess}
+                    color={colors.mainButton}
+                    disabled={false}
+                  />
+                  <CustomButton
+                    title="Use a hint"
+                    pressHandler={handleGuess}
+                    color={colors.mainButton}
+                    disabled={false}
+                  />
+                </View>
+              </Card>
+            </View>
+          }
+
+
+
+
         </View>
-
-        { // the card for game over
-          gameOver && 
-          <View style={styles.container}>
-            <Card>
-              <Text style={styles.textSection} >The game is over!</Text>
-              <Text style={styles.textSection} >{feedback}</Text>
-            </Card>
-          </View>
-        }
-
-        { // the card for game
-          !gameStarted &&
-          <View style={styles.container}>
-            <Card>
-              <Text style={styles.textSection} >{gameInstructions}</Text>
-              <CustomButton
-                title="Start"
-                pressHandler={handleStart}
-                color={colors.mainButton}
-                disabled={false}
-              />
-            </Card>
-          </View>
-        }
-
-
-
-
-      </View>
+      </TouchableWithoutFeedback>
     </GradientBackground>
   )
 }
@@ -139,7 +185,7 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 4,
-    alignItems: 'space-between',
+    alignItems: 'center',
     justifyContent: 'flex-start',
     margin: "8%",
   },
@@ -153,11 +199,20 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
-  textSection: {
+  mainText: {
+    textAlign: 'center',
+    marginVertical: "3%",
+    color: colors.primary,
+    fontSize: 20,
+  },
+  secondaryText: {
     textAlign: 'center',
     marginVertical: "5%",
     color: colors.secondary,
-    fontSize: 20,
+    fontSize: 15,
+  },
+  buttonSection: {
+    marginVertical: "5%",
   },
 });
 

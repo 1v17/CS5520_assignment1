@@ -1,5 +1,5 @@
 const colors = {
-    primary: 'royalblue',
+    primary: 'cornflowerblue',
     secondary: 'midnightblue',
     card_background: 'seashell',
     gradientLight: 'papayawhip',
