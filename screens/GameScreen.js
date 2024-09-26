@@ -96,7 +96,8 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
       }
     } else {
       Alert.alert('Invalid number',
-        `Number has to be a multiply of ${lastDigitOfPhone} between 1 and 100`);
+        `Number has to be a multiply of ${lastDigitOfPhone} between 1 and 100`,
+      [{ text: 'Okay', style: 'destructive', onPress: () => setUserGuess('') }]);
     }
   }
 
@@ -104,7 +105,7 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
     if (gameStarted && timeLeft > 0) {
       const timer = setInterval(() => setTimeLeft(timeLeft - 1), 1000);
       return () => clearInterval(timer);
-    } else if (timeLeft === 0) {
+    } else if (timeLeft === 0 && !gameWon) {
       setGameOver(true);
       setFeedback('The game is over!\nYou are out of time');
     }
@@ -210,7 +211,7 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
             <View style={styles.container}>
               <Card>
                 <Text style={styles.mainText} >{feedback}</Text>
-                <Image style={styles.image} source={require('../assets/sad_smiley_face.jpg')} />
+                <Image style={styles.image} source={require('../assets/sad_smiley_face.png')} />
                 <CustomButton
                   title="New game"
                   pressHandler={handleNewGame}
