@@ -20,32 +20,34 @@ const ConfirmScreen = ({modalVisibile, userName, userEmail,
   return (
     <Modal animationType="slide" visible={modalVisibile} transparent={true} >
       <View style={styles.container} >
-        <Card>
+        <View style={styles.cardWrapper} >
+          <Card>
 
-          <View style={styles.infoSection} >
-            <Text style={styles.info} >Hello {userName}</Text>
-            <Text style={styles.info} >Here is the information you entered:</Text>
-            <Text style={styles.info} >{userEmail}</Text>
-            <Text style={styles.info} >{userPhoneNumber}</Text>
-            <Text style={styles.info} >If it is not correct, please go back and edit them</Text>
-          </View>
+            <View style={styles.infoSection} >
+              <Text style={styles.info} >Hello {userName}</Text>
+              <Text style={styles.info} >Here is the information you entered:</Text>
+              <Text style={styles.info} >{userEmail}</Text>
+              <Text style={styles.info} >{userPhoneNumber}</Text>
+              <Text style={styles.info} >If it is not correct, please go back and edit them</Text>
+            </View>
 
-          <View style={styles.buttonSection} >
-            <CustomButton
-              title="Go back"
-              pressHandler={handleGoBack}
-              color={colors.warningButton}
-              disabled={false}
-            />
-            <CustomButton
-              title="Continue"
-              pressHandler={handleContinue}
-              color={colors.mainButton}
-              disabled={false}
-            />
+            <View style={styles.buttonSection} >
+              <CustomButton
+                title="Go back"
+                pressHandler={handleGoBack}
+                color={colors.warningButton}
+                disabled={false}
+              />
+              <CustomButton
+                title="Continue"
+                pressHandler={handleContinue}
+                color={colors.mainButton}
+                disabled={false}
+              />
 
-          </View>
-        </Card>
+            </View>
+          </Card>
+        </View>
       </View>
     </Modal>
   )
@@ -72,6 +74,11 @@ const styles = StyleSheet.create({
     alignItems: 'space-between',
     justifyContent: 'center',
     gap: 15,
+  },
+  cardWrapper: {
+    flex: 1,
+    justifyContent: 'center',
+    width: '80%',
   },
 });
 
