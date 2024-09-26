@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Modal, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, Text, StyleSheet, Image, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 
@@ -206,6 +206,7 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
             <View style={styles.container}>
               <Card>
                 <Text style={styles.mainText} >{feedback}</Text>
+                <Image style={styles.image} source={require('../assets/sad_smiley_face.jpg')} />
                 <CustomButton
                   title="New game"
                   pressHandler={handleNewGame}
@@ -252,6 +253,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   buttonSection: {
+    marginVertical: "3%",
+  },
+  image: {
+    width: 100,
+    height: 100,
     marginVertical: "3%",
   },
 });
