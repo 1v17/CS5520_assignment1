@@ -28,6 +28,7 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
   const [feedbackCardVisible, setFeedbackCardVisible] = useState(false);
   const [hintUsed, setHintUsed] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
+  const [gameWon, setGameWon] = useState(false);
 
   function generateTarget(base) {
     let result;
@@ -60,6 +61,7 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
     setGameStarted(false);
     setUserGuess('');
     setFeedbackCardVisible(false);
+    setGameWon(false);
   }
 
   function handleTryAgain() {
@@ -74,14 +76,17 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
 
   function handleGuess() {
     if (numberPattern.test(userGuess) && parseInt(userGuess) % lastDigitOfPhone === 0) {
-      setFeedbackCardVisible(true);
+      
       if (parseInt(userGuess) === target) {
         setGameOver(true);
+        setGameWon(true);
         setFeedback('You guessed correct!\nAttempts used: ' + (maxAttempts - attemptsLeft + 1));
       } else if (userGuess > target) {
+        setFeedbackCardVisible(true);
         setFeedback('You did not guess correct!\nYou should guess lower.');
         setAttemptsLeft(attemptsLeft - 1);
       } else {
+        setFeedbackCardVisible(true);
         setFeedback('You did not guess correct!\nYou should guess higher.');
         setAttemptsLeft(attemptsLeft - 1);
       }
@@ -109,7 +114,6 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
     <GradientBackground>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false} >
         <View style={styles.wrapper}>
-        {/* add TouchableWithoutFeedback if needed to */}
           <View style={styles.restartContainer}>
             <CustomButton
               title="Restart"
@@ -201,12 +205,28 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
             </View>
           }
           
-          { // the card for game over
-            gameOver && 
+          { // the card for game over and not won
+            gameOver && !gameWon &&
             <View style={styles.container}>
               <Card>
                 <Text style={styles.mainText} >{feedback}</Text>
                 <Image style={styles.image} source={require('../assets/sad_smiley_face.jpg')} />
+                <CustomButton
+                  title="New game"
+                  pressHandler={handleNewGame}
+                  color={colors.mainButton}
+                  disabled={false}
+                />
+              </Card>
+            </View>
+          }
+
+          { // the card for game over and won
+            gameOver && gameWon &&
+            <View style={styles.container}>
+              <Card>
+                <Text style={styles.mainText} >{feedback}</Text>
+                <Image style={styles.image} source={{ uri: `https://picsum.photos/id/${target}/100/100` }} />
                 <CustomButton
                   title="New game"
                   pressHandler={handleNewGame}
