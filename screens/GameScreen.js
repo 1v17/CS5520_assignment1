@@ -69,7 +69,7 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
 
   function handleEndGame() {
     setGameOver(true);
-    setFeedback('You ended the game.\nAttempts used: ' + (maxAttempts - attemptsLeft + 1));
+    setFeedback('You ended the game.\nAttempts used: ' + (maxAttempts - attemptsLeft));
   }
 
   function handleGuess() {
@@ -87,7 +87,7 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
       }
       if (attemptsLeft === 1) {
         setGameOver(true);
-        setFeedback('You are out of attempts');
+        setFeedback('The game is over!\nYou are out of attempts');
       }
     } else {
       Alert.alert('Invalid number',
@@ -101,7 +101,7 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
       return () => clearInterval(timer);
     } else if (timeLeft === 0) {
       setGameOver(true);
-      setFeedback('You are out of time');
+      setFeedback('The game is over!\nYou are out of time');
     }
   }, [timeLeft, gameStarted]);
 
@@ -118,22 +118,6 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
               disabled={false}
             />
           </View>
-
-          { // the card for game over
-            gameOver && 
-            <View style={styles.container}>
-              <Card>
-                <Text style={styles.mainText} >The game is over!</Text>
-                <Text style={styles.mainText} >{feedback}</Text>
-                <CustomButton
-                  title="New game"
-                  pressHandler={handleNewGame}
-                  color={colors.mainButton}
-                  disabled={false}
-                />
-              </Card>
-            </View>
-          }
 
           { // the card for game before it starts
             !gameStarted &&
@@ -213,6 +197,21 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
                     disabled={false}
                   />
                 </View>
+              </Card>
+            </View>
+          }
+          
+          { // the card for game over
+            gameOver && 
+            <View style={styles.container}>
+              <Card>
+                <Text style={styles.mainText} >{feedback}</Text>
+                <CustomButton
+                  title="New game"
+                  pressHandler={handleNewGame}
+                  color={colors.mainButton}
+                  disabled={false}
+                />
               </Card>
             </View>
           }
