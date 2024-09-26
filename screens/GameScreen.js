@@ -107,8 +107,8 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
           gameOver && 
           <View style={styles.container}>
             <Card>
-              <Text>The game is over!</Text>
-              <Text>{feedback}</Text>
+              <Text style={styles.textSection} >The game is over!</Text>
+              <Text style={styles.textSection} >{feedback}</Text>
             </Card>
           </View>
         }
@@ -117,7 +117,7 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
           !gameStarted &&
           <View style={styles.container}>
             <Card>
-              <Text>{gameInstructions}</Text>
+              <Text style={styles.textSection} >{gameInstructions}</Text>
               <CustomButton
                 title="Start"
                 pressHandler={handleStart}
@@ -139,8 +139,9 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 4,
-    alignItems: 'center',
+    alignItems: 'space-between',
     justifyContent: 'flex-start',
+    margin: "8%",
   },
   restartContainer: {
     flex: 1,
@@ -151,6 +152,12 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     justifyContent: 'center',
+  },
+  textSection: {
+    textAlign: 'center',
+    marginVertical: "5%",
+    color: colors.secondary,
+    fontSize: 20,
   },
 });
 
