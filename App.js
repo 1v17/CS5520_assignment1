@@ -12,8 +12,8 @@ export default function App() {
   const [receivedName, setReceivedName] = useState("");
   const [receivedEmail, setReceivedEmail] = useState("");
   const [receivedPhoneNumber, setReceivedPhoneNumber] = useState("");
-  const [confirmScreenVisible, setConfirmScreenVisible] = useState(false);
-  const [gameScreenVisible, setGameScreenVisible] = useState(false);
+  const [confirmScreenVisible, setConfirmScreenVisible] = useState(false); // Track the visibility of the ConfirmScreen
+  const [gameScreenVisible, setGameScreenVisible] = useState(false); // Track the visibility of the GameScreen
 
   function handleRegister(name, email, phoneNumber) {
     setReceivedName(name);

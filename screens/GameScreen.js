@@ -30,6 +30,8 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
   const [gameStarted, setGameStarted] = useState(false);
   const [gameWon, setGameWon] = useState(false);
 
+  // Generate a target number that is a multiply of the last digit of the phone number
+  // between lowerBound and upperBound
   function generateTarget(base) {
     let result;
     do {
@@ -51,6 +53,7 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
     setHintUsed(true);
   }
 
+  // Set everything to initial state for a new game
   function handleNewGame() {
     setTarget(generateTarget(lastDigitOfPhone));
     setAttemptsLeft(maxAttempts);
@@ -74,6 +77,7 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
     setFeedback('You ended the game.\nAttempts used: ' + (maxAttempts - attemptsLeft));
   }
 
+  // Check if the user guess is correct, if not, give feedback and reduce attempts
   function handleGuess() {
     if (numberPattern.test(userGuess) && parseInt(userGuess) % lastDigitOfPhone === 0) {
       
@@ -101,6 +105,7 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
     }
   }
 
+  // Timer effect: end the game if time runs out
   useEffect(() => {
     if (gameStarted && timeLeft > 0) {
       const timer = setInterval(() => setTimeLeft((time) => {
@@ -114,6 +119,8 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
   }, [timeLeft, gameStarted]);
 
   return (
+    /* The main container, the restart button always show at top right.
+      All the game cards controlled by conditional rendering */
     <GradientBackground>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false} >
         <View style={styles.wrapper}>
@@ -182,7 +189,7 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
             </View>
           }
 
-          { // the card for feedback
+          { // the card for feedback, contains the buttons for try again and end game
             gameStarted && !gameOver && feedbackCardVisible &&
             <View style={styles.container}>
               <Card>

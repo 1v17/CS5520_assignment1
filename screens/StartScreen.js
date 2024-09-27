@@ -11,6 +11,8 @@ import CustomButton from '../components/CustomButton';
 
 const StartScreen = ({registerHandler}) => {
 
+  // This is the screen for collecting user information
+
   const namePattern = /[a-zA-Z][_-a-zA-Z ]*/;
   const emailPattern = /[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]+/;
   const phonePattern = /^[0-9]{9}[2-9]$/;
