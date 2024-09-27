@@ -84,11 +84,11 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
       } else if (userGuess > target) {
         setFeedbackCardVisible(true);
         setFeedback('You did not guess correct!\nYou should guess lower.');
-        setAttemptsLeft(attemptsLeft - 1);
+        setAttemptsLeft((attemps) => { return attemps - 1 }); // use updater function
       } else {
         setFeedbackCardVisible(true);
         setFeedback('You did not guess correct!\nYou should guess higher.');
-        setAttemptsLeft(attemptsLeft - 1);
+        setAttemptsLeft((attemps) => { return attemps - 1 }); // use updater function
       }
       if (attemptsLeft === 1) {
         setGameOver(true);
@@ -103,7 +103,9 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
 
   useEffect(() => {
     if (gameStarted && timeLeft > 0) {
-      const timer = setInterval(() => setTimeLeft(timeLeft - 1), 1000);
+      const timer = setInterval(() => setTimeLeft((time) => {
+        return time - 1; // use updater function
+      }), 1000);
       return () => clearInterval(timer);
     } else if (timeLeft === 0 && !gameWon) {
       setGameOver(true);
