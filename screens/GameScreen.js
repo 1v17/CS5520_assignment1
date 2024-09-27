@@ -148,7 +148,6 @@ const GameScreen = ({userPhoneNumber, restartHandler}) => {
             <View style={styles.container}>
               <Card>
                 <Text style={styles.mainText} >{gameInstructions}</Text>
-
                 <InputBox
                   value={userGuess}
                   onChangeText={setUserGuess}

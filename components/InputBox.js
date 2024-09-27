@@ -38,6 +38,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     margin: 5,
     fontSize: 17,
+    paddingVertical: 5,
+    paddingHorizontal: 7,
   },
   invalidWarning: {
     paddingLeft: 5,
